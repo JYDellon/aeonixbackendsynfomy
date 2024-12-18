@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
+    "JWT_SECRET_KEY": "votre_clé_secrète",
+    "JWT_PASSPHRASE": "votre_passphrase"
+  }
+}

@@ -46,7 +46,7 @@ class PageVisitController extends AbstractController
             'visitCount' => $pageVisit->getVisitCount(),
         ]);
 
-        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Origin', 'https://mon-portfolio-tawny-sigma.vercel.app/');
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -72,7 +72,7 @@ class PageVisitController extends AbstractController
         }
 
         $response = new JsonResponse($data);
-        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Origin', 'https://mon-portfolio-tawny-sigma.vercel.app/');
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -92,7 +92,7 @@ class PageVisitController extends AbstractController
         $this->entityManager->flush();
 
         $response = new JsonResponse(['message' => 'Toutes les visites ont été supprimées.']);
-        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Origin', 'https://mon-portfolio-tawny-sigma.vercel.app/');
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

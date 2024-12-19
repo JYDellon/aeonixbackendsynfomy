@@ -123,18 +123,35 @@
 
 
 
+# nelmio_cors:
+#     defaults:
+#         allow_origin: '%env(array:FRONTEND_URLS)%'
+#         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#         allow_headers: ['Content-Type', 'Authorization']
+#         max_age: 3600
+#         allow_credentials: true
+#     paths:
+#         '^/api/':
+#             allow_origin: '%env(array:FRONTEND_URLS)%'
+#             allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#             allow_headers: ['Content-Type', 'Authorization']
+#             max_age: 3600
+#             allow_credentials: true
+
+
+
+
+
+
+
 
 nelmio_cors:
     defaults:
-        allow_origin: ['https://mon-portfolio-eta-ten.vercel.app']
+        allow_origin: '%env(array:CORS_ALLOW_ORIGIN)%'
         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
         allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
         allow_credentials: true
     paths:
         '^/api/':
-            allow_origin: ['https://mon-portfolio-eta-ten.vercel.app']
-            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-            allow_headers: ['Content-Type', 'Authorization']
-            max_age: 3600
-            allow_credentials: true
+            allow_origin: '%env(array:CORS_ALLOW_ORIGIN)%'

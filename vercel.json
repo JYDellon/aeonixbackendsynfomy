@@ -3,7 +3,13 @@
   "builds": [
     {
       "src": "public/index.php",
-      "use": "vercel-php"
+      "use": "@vercel/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
     }
   ],
   "env": {
@@ -12,17 +18,35 @@
     "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
     "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
     "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem",
-    "FRONTEND_URL": "https://mon-portfolio-eta-ten.vercel.app",
+    "FRONTEND_URLS": "https://mon-portfolio-eta-ten.vercel.app,http://localhost:3000",
     "BACKEND_URL": "https://aeonixbackendsynfomy.vercel.app"
-  },
-  "rewrites": [
+  }
+}
+
+
+
+{
+  "version": 2,
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "/index.php/:path*"
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
+    }
+  ],
+  "files": [
+    {
+      "src": "config/jwt/private.pem",
+      "use": "@vercel/static"
     },
     {
-      "source": "/:path*",
-      "destination": "/index.php/:path*"
+      "src": "config/jwt/public.pem",
+      "use": "@vercel/static"
     }
   ]
 }

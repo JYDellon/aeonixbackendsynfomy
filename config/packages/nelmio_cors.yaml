@@ -1,10 +1,58 @@
+# nelmio_cors:
+#     defaults:
+#         allow_credentials: true
+#         allow_origin: ['http://localhost:3000'] # L'URL de votre frontend React
+#         allow_headers: ['Content-Type', 'Authorization']
+#         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#         expose_headers: []
+#         max_age: 3600
+#     paths:
+#         '^/api/': ~  # Appliquer les règles CORS à toutes les routes qui commencent par /api
+
+
+
+
+
+
+# # config/packages/nelmio_cors.yaml
+# nelmio_cors:
+#     defaults:
+#         allow_origin: ['http://localhost:3000'] # L'URL de votre frontend React
+#         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#         allow_headers: ['Content-Type', 'Authorization']
+#         max_age: 3600
+#         allow_credentials: true
+#     paths:
+#         '^/api/':
+#             allow_origin: ['http://localhost:3000'] # L'URL de votre frontend React
+#             allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#             allow_headers: ['Content-Type', 'Authorization']
+#             max_age: 3600
+#             allow_credentials: true
+
+
+
+
+
+
+
+
+
+
+
+
+# config/packages/nelmio_cors.yaml
 nelmio_cors:
     defaults:
-        allow_credentials: true
-        allow_origin: ['http://localhost:3000'] # L'URL de votre frontend React
-        allow_headers: ['Content-Type', 'Authorization']
+        allow_origin: ['%env(FRONTEND_URL)%']
         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-        expose_headers: []
+        allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
+        allow_credentials: true
     paths:
-        '^/api/': ~  # Appliquer les règles CORS à toutes les routes qui commencent par /api
+        '^/api/':
+            allow_origin: ['%env(FRONTEND_URL)%']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+            allow_headers: ['Content-Type', 'Authorization']
+            max_age: 3600
+            allow_credentials: true

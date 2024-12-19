@@ -12,6 +12,14 @@
     "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
     "CORS_ALLOW_ORIGIN": "^https?://(localhost|127\\.0\\.0\\.1|mon-portfolio-eta-ten\\.vercel\\.app)(:[0-9]+)?$",
     "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
-    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem"
-  }
+    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem",
+    "FRONTEND_URL":"https://mon-portfolio-eta-ten.vercel.app"
+
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index.php/:path*"
+    }
+  ]
 }

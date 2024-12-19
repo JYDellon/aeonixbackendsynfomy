@@ -41,17 +41,45 @@
 
 
 
+# # config/packages/nelmio_cors.yaml
+# nelmio_cors:
+#     defaults:
+#         allow_origin: ['%env(FRONTEND_URL)%']
+#         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#         allow_headers: ['Content-Type', 'Authorization']
+#         max_age: 3600
+#         allow_credentials: true
+#     paths:
+#         '^/api/':
+#             allow_origin: ['%env(FRONTEND_URL)%']
+#             allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+#             allow_headers: ['Content-Type', 'Authorization']
+#             max_age: 3600
+#             allow_credentials: true
+
+
+
+
+
+
+
+
+
+
+
+
+
 # config/packages/nelmio_cors.yaml
 nelmio_cors:
     defaults:
-        allow_origin: ['%env(FRONTEND_URL)%']
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
         allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
         allow_credentials: true
     paths:
         '^/api/':
-            allow_origin: ['%env(FRONTEND_URL)%']
+            allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
             allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
             allow_headers: ['Content-Type', 'Authorization']
             max_age: 3600

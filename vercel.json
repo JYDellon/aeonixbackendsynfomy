@@ -10,16 +10,19 @@
     "APP_ENV": "prod",
     "APP_SECRET": "39a2e7373df12e0f9f70c514580436b5d3c4df48719ca224afe44deb024fda28",
     "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
-    "CORS_ALLOW_ORIGIN": "^https?://(localhost|127\\.0\\.0\\.1|mon-portfolio-eta-ten\\.vercel\\.app)(:[0-9]+)?$",
+    "CORS_ALLOW_ORIGIN": "http://localhost:3000,https://mon-portfolio-eta-ten.vercel.app",
     "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
     "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem",
-    "FRONTEND_URL":"https://mon-portfolio-eta-ten.vercel.app"
-
+    "FRONTEND_URL": "https://mon-portfolio-eta-ten.vercel.app"
   },
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api/index.php/:path*"
+      "destination": "/index.php/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.php/:path*"
     }
   ]
 }

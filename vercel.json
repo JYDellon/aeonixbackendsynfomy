@@ -1,4 +1,7 @@
+
+
 {
+  "version": 2,
   "builds": [
     {
       "src": "public/index.php",
@@ -6,9 +9,12 @@
     }
   ],
   "env": {
-    "APP_ENV": "production",
+    "APP_ENV": "prod",
+    "APP_SECRET": "39a2e7373df12e0f9f70c514580436b5d3c4df48719ca224afe44deb024fda28",
     "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
-    "JWT_SECRET_KEY": "votre_clé_secrète",
-    "JWT_PASSPHRASE": "votre_passphrase"
+    # "CORS_ALLOW_ORIGIN": "^https?://(localhost|127\\.0\\.0\\.1)(:[0-9]+)?$",
+    "CORS_ALLOW_ORIGIN": "^https?://(localhost|127\\.0\\.0\\.1|mon-portfolio-eta-ten\\.vercel\\.app)(:[0-9]+)?$"
+    "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
+    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem"
   }
 }

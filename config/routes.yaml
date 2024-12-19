@@ -1,5 +1,22 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+api_visit_record_visit:
+  path: /api/visit/{pageUrl}
+  controller: App\Controller\Api\PageVisitController::recordVisit
+  methods: [POST]
+
+api_visit_get_all_visits:
+  path: /api/visit
+  controller: App\Controller\Api\PageVisitController::getAllVisits
+  methods: [GET]
+
+
+api_visit_reset_visits:
+  path: /api/visit/reset
+  controller: App\Controller\Api\PageVisitController::resetVisits
+  methods: [POST]
+
+# config/routes.yaml
+
+delete_all_visits:
+    path: /api/visit
+    controller: App\Controller\Api\PageVisitController::deleteAllVisits
+    methods: [DELETE]

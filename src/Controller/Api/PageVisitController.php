@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace App\Controller\Api;
 
 use App\Repository\PageVisitRepository;
@@ -68,5 +66,20 @@ class PageVisitController extends AbstractController
         }
 
         return new JsonResponse($data);
+    }
+
+    // Nouvelle méthode pour supprimer toutes les visites (DELETE)
+    #[Route('', methods: ['DELETE'], name: 'delete_all_visits')]
+    public function deleteAllVisits(): JsonResponse
+    {
+        $pageVisits = $this->pageVisitRepository->findAll();
+
+        foreach ($pageVisits as $pageVisit) {
+            $this->entityManager->remove($pageVisit);
+        }
+
+        $this->entityManager->flush();
+
+        return new JsonResponse(['message' => 'Toutes les visites ont été supprimées.']);
     }
 }

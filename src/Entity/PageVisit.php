@@ -32,7 +32,6 @@ class PageVisit
     public function setPageUrl(string $pageUrl): static
     {
         $this->pageUrl = $pageUrl;
-
         return $this;
     }
 
@@ -44,14 +43,12 @@ class PageVisit
     public function setVisitCount(int $visitCount): static
     {
         $this->visitCount = $visitCount;
-
         return $this;
     }
 
-       // Méthode pour incrémenter le compteur de visites
-       public function incrementVisitCount(): self
-       {
-           $this->visitCount++;
-           return $this;
-       }
+    public function incrementVisitCount(): self
+    {
+        $this->visitCount++;
+        return $this;
+    }
 }

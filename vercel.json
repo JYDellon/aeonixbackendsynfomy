@@ -18,7 +18,7 @@
     "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
     "JWT_SECRET_KEY": "config/jwt/private.pem",
     "JWT_PUBLIC_KEY": "config/jwt/public.pem",
-    "FRONTEND_URLS": "https://mon-portfolio-tawny-sigma.vercel.app",
+    "FRONTEND_URLS": "https://mon-portfolio-tawny-sigma.vercel.app,http://localhost:3000",
     "BACKEND_URL": "https://aeonixbackendsynfomy.vercel.app"
   }
 }

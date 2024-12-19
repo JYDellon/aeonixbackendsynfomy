@@ -1,0 +1,9 @@
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "php://stderr" # Redirige les logs vers STDERR, compatible avec Vercel
+            level: error         # Changez à 'debug' si vous souhaitez plus de détails
+        console:
+            type: console
+            process_psr_3_messages: true

@@ -7,6 +7,7 @@ use App\Entity\PageVisit;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/visit', name: 'api_visit_')]
@@ -23,7 +24,7 @@ class PageVisitController extends AbstractController
 
     // Méthode pour enregistrer une visite (POST)
     #[Route('/{pageUrl}', methods: ['POST'], name: 'record_visit')]
-    public function recordVisit(string $pageUrl): JsonResponse
+    public function recordVisit(string $pageUrl): Response
     {
         $pageVisit = $this->pageVisitRepository->findOneBy(['pageUrl' => $pageUrl]);
 
@@ -40,20 +41,25 @@ class PageVisitController extends AbstractController
         $this->entityManager->persist($pageVisit);
         $this->entityManager->flush();
 
-        return new JsonResponse([
+        $response = new JsonResponse([
             'pageUrl' => $pageVisit->getPageUrl(),
             'visitCount' => $pageVisit->getVisitCount(),
         ]);
+
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        return $response;
     }
 
     // Méthode pour récupérer toutes les visites de pages (GET)
     #[Route('', methods: ['GET'], name: 'get_all_visits')]
-    public function getAllVisits(): JsonResponse
+    public function getAllVisits(): Response
     {
         // Récupérer toutes les pages de visite avec leur nombre de visites
         $pageVisits = $this->pageVisitRepository->findAll();
 
-        // Transformer les données en tableau simple pour la réponse JSON
         $data = [];
         foreach ($pageVisits as $pageVisit) {
             // Exclure la page "/dashboard"
@@ -65,12 +71,17 @@ class PageVisitController extends AbstractController
             }
         }
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        return $response;
     }
 
     // Nouvelle méthode pour supprimer toutes les visites (DELETE)
     #[Route('', methods: ['DELETE'], name: 'delete_all_visits')]
-    public function deleteAllVisits(): JsonResponse
+    public function deleteAllVisits(): Response
     {
         $pageVisits = $this->pageVisitRepository->findAll();
 
@@ -80,6 +91,11 @@ class PageVisitController extends AbstractController
 
         $this->entityManager->flush();
 
-        return new JsonResponse(['message' => 'Toutes les visites ont été supprimées.']);
+        $response = new JsonResponse(['message' => 'Toutes les visites ont été supprimées.']);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+        return $response;
     }
 }

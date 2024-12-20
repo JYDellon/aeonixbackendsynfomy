@@ -20,3 +20,8 @@ delete_all_visits:
     path: /api/visit
     controller: App\Controller\Api\PageVisitController::deleteAllVisits
     methods: [DELETE]
+
+
+home:
+    path: /
+    controller: App\Controller\HomeController::index

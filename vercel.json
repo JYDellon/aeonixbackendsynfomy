@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "public/index.php",
-      "use": "vercel-php",
-      "config": {
-        "buildCommand": "./build.sh"
-      }
+      "use": "vercel-php"
     }
   ],
   "routes": [
@@ -17,9 +14,11 @@
   ],
   "env": {
     "APP_ENV": "prod",
-    "APP_DEBUG": "0",
-    "DATABASE_URL": "mysql://user:password@host:3306/db_name",
-    "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
-    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem"
+    "APP_SECRET": "39a2e7373df12e0f9f70c514580436b5d3c4df48719ca224afe44deb024fda28",
+    "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
+    "JWT_SECRET_KEY": "config/jwt/private.pem",
+    "JWT_PUBLIC_KEY": "config/jwt/public.pem",
+    "FRONTEND_URLS": "*",
+    "BACKEND_URL": "https://aeonixbackendsynfomy.vercel.app"
   }
 }

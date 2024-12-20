@@ -11,11 +11,12 @@ class Kernel extends BaseKernel
 
     public function getCacheDir(): string
     {
-        return $_SERVER['APP_CACHE_DIR'] ?? $this->getProjectDir() . '/var/cache/' . $this->environment;
+        return $_SERVER['APP_CACHE_DIR'] ?? parent::getCacheDir();
     }
-
+    
     public function getLogDir(): string
     {
-        return $_SERVER['APP_LOG_DIR'] ?? $this->getProjectDir() . '/var/log';
+        return $_SERVER['APP_LOG_DIR'] ?? parent::getLogDir();
     }
+    
 }

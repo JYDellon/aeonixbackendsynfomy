@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "public/index.php",
-      "use": "vercel-php"
+      "use": "vercel-php",
+      "config": {
+        "buildCommand": "composer install --no-dev --optimize-autoloader && php bin/console cache:clear --env=prod"
+      }
     }
   ],
   "routes": [
@@ -12,32 +15,11 @@
       "dest": "/public/index.php"
     }
   ],
-"env": {
+  "env": {
     "APP_ENV": "prod",
-    "APP_SECRET": "39a2e7373df12e0f9f70c514580436b5d3c4df48719ca224afe44deb024fda28",
-    "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0&charset=utf8mb4",
+    "APP_DEBUG": "0",
+    "DATABASE_URL": "mysql://user:password@host:3306/db_name",
     "JWT_SECRET_KEY": "/var/task/config/jwt/private.pem",
-    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem",
-    "JWT_PASSPHRASE": "0000",
-    "FRONTEND_URLS": "https://mon-portfolio-tawny-sigma.vercel.app",
-    "BACKEND_URL": "https://aeonixbackendsynfomy.vercel.app"
-},
-"env": {
-    "LOG_FILE": "/tmp/prod.log"
+    "JWT_PUBLIC_KEY": "/var/task/config/jwt/public.pem"
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

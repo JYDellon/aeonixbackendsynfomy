@@ -207,7 +207,7 @@
 
 nelmio_cors:
     defaults:
-        allow_origin: ['https://mon-portfolio-tawny-sigma.vercel.app'] # Ajoutez ici votre domaine frontend
+        allow_origin: ['https://vercel.com/dellons-projects/aeonixbackendsynfomy/4474V75xqHAtLotjnfyzwbDqYED4'] # Ajoutez ici votre domaine frontend
         allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] # Méthodes HTTP autorisées
         allow_headers: ['Content-Type', 'Authorization'] # Headers autorisés
         expose_headers: ['Authorization'] # Headers exposés si besoin
@@ -215,4 +215,4 @@ nelmio_cors:
         allow_credentials: true # Si des cookies ou des identifiants sont envoyés
     paths:
         '^/api/': # Autorise uniquement les chemins qui commencent par /api/
-            allow_origin: ['https://mon-portfolio-tawny-sigma.vercel.app']
+            allow_origin: ['https://vercel.com/dellons-projects/aeonixbackendsynfomy/4474V75xqHAtLotjnfyzwbDqYED4']

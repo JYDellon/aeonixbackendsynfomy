@@ -1,28 +1,78 @@
-# config/services.yaml
+# # config/services.yaml
+
+# parameters:
+#     # Vous pouvez définir des paramètres globaux ici, comme l'URL de la base de données, etc.
+#     # Ces paramètres ne changent pas d'un environnement à l'autre.
+#     # Exemple :
+#     # database_url: 'mysql://db_user:db_password@localhost:3306/db_name'
+
+# services:
+#     # Configuration par défaut pour tous les services dans ce fichier
+#     _defaults:
+#         autowire: true      # Symfony va injecter automatiquement les dépendances des services
+#         autoconfigure: true # Symfony va automatiquement enregistrer les services comme des événements, des abonnés, etc.
+
+#     # Définition des services basés sur les classes dans le répertoire src/
+#     # Cela permet à Symfony de connaître toutes les classes du répertoire `src/` et de les utiliser comme des services
+#     App\:
+#         resource: '../src/'  # Symfony va scanner tout le répertoire src/ pour y détecter les classes
+#         exclude:
+#             - '../src/DependencyInjection/' # On exclut certains répertoires (comme DependencyInjection) si nécessaire
+#             - '../src/Entity/' # On exclut les entités, elles ne sont pas des services
+#             - '../src/Kernel.php' # On exclut le fichier Kernel.php car ce n'est pas un service
+
+#     # Définition d'un service spécifique pour PageVisitRepository
+#     # Si vous avez un service qui n'est pas automatiquement configuré ou nécessite des arguments spécifiques :
+#     App\Repository\PageVisitRepository:
+#         arguments:
+#             $entityManager: '@doctrine.orm.entity_manager'  # Injection explicite de l'EntityManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 parameters:
-    # Vous pouvez définir des paramètres globaux ici, comme l'URL de la base de données, etc.
-    # Ces paramètres ne changent pas d'un environnement à l'autre.
+    # Définition des paramètres globaux (si nécessaire)
     # Exemple :
-    # database_url: 'mysql://db_user:db_password@localhost:3306/db_name'
+    # database_url: 'mysql://user:password@host:port/db_name'
 
 services:
-    # Configuration par défaut pour tous les services dans ce fichier
+    # Configuration par défaut pour tous les services définis dans ce fichier
     _defaults:
-        autowire: true      # Symfony va injecter automatiquement les dépendances des services
-        autoconfigure: true # Symfony va automatiquement enregistrer les services comme des événements, des abonnés, etc.
+        autowire: true      # Injecter automatiquement les dépendances
+        autoconfigure: true # Automatiquement configurer comme événements, abonnés, etc.
 
-    # Définition des services basés sur les classes dans le répertoire src/
-    # Cela permet à Symfony de connaître toutes les classes du répertoire `src/` et de les utiliser comme des services
+    # Détection automatique des services dans le répertoire src/
     App\:
-        resource: '../src/'  # Symfony va scanner tout le répertoire src/ pour y détecter les classes
+        resource: '../src/'  # Scanner toutes les classes dans src/
         exclude:
-            - '../src/DependencyInjection/' # On exclut certains répertoires (comme DependencyInjection) si nécessaire
-            - '../src/Entity/' # On exclut les entités, elles ne sont pas des services
-            - '../src/Kernel.php' # On exclut le fichier Kernel.php car ce n'est pas un service
+            - '../src/DependencyInjection/' # Exclure DependencyInjection (non nécessaire)
+            - '../src/Entity/'              # Exclure les entités (elles ne sont pas des services)
+            - '../src/Kernel.php'           # Exclure le fichier Kernel.php (ce n'est pas un service)
 
-    # Définition d'un service spécifique pour PageVisitRepository
-    # Si vous avez un service qui n'est pas automatiquement configuré ou nécessite des arguments spécifiques :
+    # Définir explicitement des services si nécessaire
+    # Exemple avec un repository spécifique
     App\Repository\PageVisitRepository:
         arguments:
-            $entityManager: '@doctrine.orm.entity_manager'  # Injection explicite de l'EntityManager
+            $entityManager: '@doctrine.orm.entity_manager' # Injection explicite de l'EntityManager
+
+    # Ajout des listeners ou services spécifiques non détectés automatiquement
+    App\EventListener\CorsListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }
+
+    # Ajouter d'autres services spécifiques si nécessaire...

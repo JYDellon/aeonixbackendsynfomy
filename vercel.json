@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "public/index.php",
-      "use": "vercel-php"
+      "use": "vercel-php",
+      "config": {
+        "buildCommand": "composer install --no-dev --optimize-autoloader && php bin/console cache:clear --env=prod"
+      }
     }
   ],
   "routes": [

@@ -1,88 +1,15 @@
-# # see https://symfony.com/doc/current/reference/configuration/framework.html
-# framework:
-#     secret: '%env(APP_SECRET)%'
-
-#     # Note that the session will be started ONLY if you read or write from it.
-#     session: true
-
-#     #esi: true
-#     #fragments: true
-
-# when@test:
-#     framework:
-#         test: true
-#         session:
-#             storage_factory_id: session.storage.factory.mock_file
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
 
-    # Cache configuration
-    cache:
-        app: cache.adapter.filesystem
-        directory: '%kernel.cache_dir%'
-
-    # Session configuration
-    session:
-        handler_id: null
-        save_path: '%kernel.cache_dir%/sessions'
-
     # Note that the session will be started ONLY if you read or write from it.
-    # Uncomment only if needed; already defined above.
-    # session: true
+    session: true
 
-    # ESI and fragments (uncomment if needed)
-    # esi: true
-    # fragments: true
-
-parameters:
-    kernel.cache_dir: '/tmp/cache'
+    #esi: true
+    #fragments: true
 
 when@test:
     framework:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
-
-
-
-
-
-
-
-
-
-
-
-    # Cache configuration
-    cache:
-        app: cache.adapter.filesystem
-        directory: '/tmp/cache'
-
-    # Session configuration
-    session:
-        handler_id: null
-        save_path: '/tmp/cache/sessions'
-
-    # Note that the session will be started ONLY if you read or write from it.
-    # Uncomment only if needed; already defined above.
-    # session: true
-
-    # ESI and fragments (uncomment if needed)
-    # esi: true
-    # fragments: true

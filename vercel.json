@@ -21,7 +21,10 @@
     "JWT_PASSPHRASE": "0000",
     "FRONTEND_URLS": "https://mon-portfolio-tawny-sigma.vercel.app",
     "BACKEND_URL": "https://aeonixbackendsynfomy.vercel.app"
-}
+},
+"env": {
+    "LOG_FILE": "/tmp/prod.log"
+  }
 
 }
 

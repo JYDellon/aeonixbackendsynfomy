@@ -1,0 +1,10 @@
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%env(resolve:LOG_FILE)%"
+            level: debug
+        console:
+            type: console
+            process_psr_3_messages: false
+            level: debug

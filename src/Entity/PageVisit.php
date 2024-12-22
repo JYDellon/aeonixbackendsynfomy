@@ -10,14 +10,14 @@ class PageVisit
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     private ?string $pageUrl = null;
 
-    #[ORM\Column]
-    private ?int $visitCount = null;
+    #[ORM\Column(type: 'integer')]
+    private int $visitCount = 0;
 
     public function getId(): ?int
     {
@@ -29,21 +29,15 @@ class PageVisit
         return $this->pageUrl;
     }
 
-    public function setPageUrl(string $pageUrl): static
+    public function setPageUrl(string $pageUrl): self
     {
         $this->pageUrl = $pageUrl;
         return $this;
     }
 
-    public function getVisitCount(): ?int
+    public function getVisitCount(): int
     {
         return $this->visitCount;
-    }
-
-    public function setVisitCount(int $visitCount): static
-    {
-        $this->visitCount = $visitCount;
-        return $this;
     }
 
     public function incrementVisitCount(): self

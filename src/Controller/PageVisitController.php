@@ -18,22 +18,45 @@ class PageVisitController extends AbstractController
         PageVisitRepository $repository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
-        $pageVisit = $repository->findOneBy(['pageUrl' => $pageUrl]);
+        // Normalisation de l'URL
+        $pageUrl = rtrim(strtolower($pageUrl), '/');
 
-        if (!$pageVisit) {
-            $pageVisit = new PageVisit();
-            $pageVisit->setPageUrl($pageUrl);
+        // Ne pas enregistrer les visites pour la page "dashboard"
+        if ($pageUrl === 'dashboard') {
+            return new JsonResponse([
+                'message' => 'Les visites pour cette page ne sont pas enregistrées.',
+                'pageUrl' => $pageUrl,
+            ], JsonResponse::HTTP_NO_CONTENT);
         }
 
-        $pageVisit->incrementVisitCount();
-        $entityManager->persist($pageVisit);
-        $entityManager->flush();
+        // Verrouillage transactionnel pour éviter les doublons
+        $entityManager->beginTransaction();
 
-        return new JsonResponse([
-            'message' => 'Visite enregistrée avec succès.',
-            'pageUrl' => $pageVisit->getPageUrl(),
-            'visitCount' => $pageVisit->getVisitCount(),
-        ]);
+        try {
+            $pageVisit = $repository->findOneBy(['pageUrl' => $pageUrl]);
+
+            if (!$pageVisit) {
+                $pageVisit = new PageVisit();
+                $pageVisit->setPageUrl($pageUrl);
+            }
+
+            $pageVisit->incrementVisitCount();
+            $entityManager->persist($pageVisit);
+            $entityManager->flush();
+            $entityManager->commit();
+
+            return new JsonResponse([
+                'message' => 'Visite enregistrée avec succès.',
+                'pageUrl' => $pageVisit->getPageUrl(),
+                'visitCount' => $pageVisit->getVisitCount(),
+            ]);
+        } catch (\Exception $e) {
+            $entityManager->rollback();
+            return new JsonResponse([
+                'message' => 'Une erreur s\'est produite lors de l\'enregistrement de la visite.',
+                'error' => $e->getMessage(),
+            ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     #[Route('/api/visit', name: 'api_get_visits', methods: ['GET'])]

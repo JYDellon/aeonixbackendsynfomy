@@ -4,7 +4,6 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "symfony/symfony": "^5.4 || ^6.0",
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",

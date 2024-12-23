@@ -3,9 +3,9 @@
     "builds": [
       {
         "src": "public/index.php",
-        "use": "@vercel/php",
+        "use": "@vercel/static-build",
         "config": {
-          "maxLambdaSize": "50mb"
+          "distDir": "public"
         }
       }
     ],
@@ -17,7 +17,7 @@
     ],
     "env": {
       "APP_ENV": "prod",
-      "APP_SECRET": "your_app_secret",
+      "APP_SECRET": "123456789azertyuiop123456789",
       "DATABASE_URL": "mysql://admin:abcdefgh@database-1.clis8kiwc2pt.eu-north-1.rds.amazonaws.com:3306/database-1?serverVersion=8.0.32&charset=utf8mb4",
       "MAILER_DSN": "null://null",
       "CORS_ALLOW_ORIGIN": "^https?://(localhost|127\\.0\\.0\\.1)(:[0-9]+)?$"
